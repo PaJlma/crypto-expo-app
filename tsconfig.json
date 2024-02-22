@@ -1,6 +1,17 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+
+    /* Linting */
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Alliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }

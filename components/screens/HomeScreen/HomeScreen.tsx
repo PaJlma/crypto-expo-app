@@ -1,7 +1,7 @@
-import { StatusBar } from "expo-status-bar";
 import { FC } from "react";
+import { HomeScreenProps } from "./HomeScreen.types";
 import { StyleSheet, Text, View } from "react-native";
-import { AppProps } from "./App.types";
+import { StatusBar } from "expo-status-bar";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const App: FC<AppProps> = (props) => {
+const HomeScreen: FC<HomeScreenProps> = (props) => {
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
@@ -21,4 +21,4 @@ const App: FC<AppProps> = (props) => {
   );
 };
 
-export default App;
+export default HomeScreen;

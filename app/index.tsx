@@ -1,6 +1,6 @@
+import HomeScreen from "components/screens/HomeScreen/HomeScreen";
 import { FC } from "react";
-import App from "../App";
 
-const HomePage: FC = () => <App />;
+const HomePage: FC = () => <HomeScreen />;
 
 export default HomePage;
