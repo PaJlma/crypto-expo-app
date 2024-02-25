@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "951918641810",
+    "project_id": "crypto-app-3b7ba",
+    "storage_bucket": "crypto-app-3b7ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951918641810:android:379e574ef6b6cab9641c4b",
+        "android_client_info": {
+          "package_name": "com.pajlma.crypto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3IlEd6GgIYSPcEumnu9fEXb4hTl0QYcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,23 +1,52 @@
-import { FC } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { HomeScreenProps } from "./HomeScreen.types";
-import { StyleSheet, Text, View } from "react-native";
-import { StatusBar } from "expo-status-bar";
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+import { RefreshControl, ScrollView } from "react-native";
+import { useGetCryptoListQuery } from "store/services/crypto.service";
+import CryptoListItem from "components/ui/CryptoListItem/CryptoListItem";
+import LoadingScreen from "../LoadingScreen/LoadingScreen";
+import NoInternetScreen from "../NoInternetScreen/NoInternetScreen";
+import NetInfo from "@react-native-community/netinfo";
 
 const HomeScreen: FC<HomeScreenProps> = (props) => {
+  const { data, isError, isLoading, refetch } = useGetCryptoListQuery();
+  const [isConnected, setIsConnected] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((connection) => {
+      setIsConnected(!!connection.isConnected);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      {!isConnected ? (
+        <NoInternetScreen />
+      ) : isLoading ? (
+        <LoadingScreen />
+      ) : isError ? (
+        "Обшимбка"
+      ) : (
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        >
+          {data &&
+            data.data.map((crypto) => (
+              <CryptoListItem key={crypto.id} crypto={crypto} />
+            ))}
+        </ScrollView>
+      )}
+    </>
   );
 };
 

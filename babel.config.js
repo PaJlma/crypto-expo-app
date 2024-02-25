@@ -10,6 +10,7 @@ module.exports = function(api) {
             "@": "./src",
           },
         },
+        "react-native-paper/babel",
       ],
     ],
   };
